@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Nombres</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <main class="card card-centered">
+    <form action="{{ url_for('ejercicio2') }}" method="POST">
+      <div class="field">
+        <label for="nombre1">Nombre 1:</label>
+        <input
+          type="text"
+          id="nombre1"
+          name="nombre1"
+          value="{{ valores.nombre1 }}"
+          required
+          enterkeyhint="next"
+        >
+        <span id="nombre1-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa el primer nombre.
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="nombre2">Nombre 2:</label>
+        <input
+          type="text"
+          id="nombre2"
+          name="nombre2"
+          value="{{ valores.nombre2 }}"
+          required
+          enterkeyhint="next"
+        >
+        <span id="nombre2-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa el segundo nombre.
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="nombre3">Nombre 3:</label>
+        <input
+          type="text"
+          id="nombre3"
+          name="nombre3"
+          value="{{ valores.nombre3 }}"
+          required
+          enterkeyhint="done"
+        >
+        <span id="nombre3-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa el tercer nombre.
+        </span>
+      </div>
+
+      <button type="submit" class="btn-submit">Enviar</button>
+    </form>
+
+    {% if error %}
+      <div class="alert-error" role="alert">{{ error }}</div>
+    {% endif %}
+
+    {% if nombre_mayor is not none %}
+      <div class="result" aria-live="polite">
+        <p>El nombre con mayor cantidad de caracteres es : {{ nombre_mayor }}</p>
+        <p>El nombre tiene : {{ cantidad_caracteres }} caracteres</p>
+      </div>
+    {% endif %}
+
+    <a class="back-link" href="{{ url_for('index') }}">Volver al menú</a>
+  </main>
+</body>
+</html>

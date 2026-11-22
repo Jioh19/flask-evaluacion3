@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Notas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>Formulario de Notas</h1>
+
+    <form action="{{ url_for('ejercicio1') }}" method="POST">
+      <div class="field">
+        <label for="nota1">Nota 1:</label>
+        <input
+          type="number"
+          id="nota1"
+          name="nota1"
+          min="10"
+          max="70"
+          step="any"
+          value="{{ valores.nota1 }}"
+          required
+          enterkeyhint="next"
+        >
+        <span id="nota1-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa una nota entre 10 y 70.
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="nota2">Nota 2:</label>
+        <input
+          type="number"
+          id="nota2"
+          name="nota2"
+          min="10"
+          max="70"
+          step="any"
+          value="{{ valores.nota2 }}"
+          required
+          enterkeyhint="next"
+        >
+        <span id="nota2-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa una nota entre 10 y 70.
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="nota3">Nota 3:</label>
+        <input
+          type="number"
+          id="nota3"
+          name="nota3"
+          min="10"
+          max="70"
+          step="any"
+          value="{{ valores.nota3 }}"
+          required
+          enterkeyhint="next"
+        >
+        <span id="nota3-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa una nota entre 10 y 70.
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="asistencia">Asistencia (%):</label>
+        <input
+          type="number"
+          id="asistencia"
+          name="asistencia"
+          min="0"
+          max="100"
+          step="any"
+          value="{{ valores.asistencia }}"
+          required
+          enterkeyhint="done"
+        >
+        <span id="asistencia-error" class="error-msg">
+          <span role="img" aria-label="Error">❌</span> Ingresa una asistencia entre 0 y 100.
+        </span>
+      </div>
+
+      <button type="submit" class="btn-submit">Enviar</button>
+    </form>
+
+    {% if error %}
+      <div class="alert-error" role="alert">{{ error }}</div>
+    {% endif %}
+
+    {% if promedio is not none and estado %}
+      <div class="result" aria-live="polite">
+        <p>{{ promedio }}</p>
+        <p>{{ estado }}</p>
+      </div>
+    {% endif %}
+
+    <a class="back-link" href="{{ url_for('index') }}">Volver al menú</a>
+  </main>
+</body>
+</html>
